@@ -1,0 +1,552 @@
+/* ============================================================
+   PREMIUM BOOK TABLE - CARD-BASED DESIGN
+   ============================================================ */
+
+:root {
+  --primary-green: var(--green);
+  --dark-green: var(--green-mid);
+  --light-green: var(--green-light);
+  --accent-gold: var(--accent-gold);
+  --bg-cream: var(--cream);
+  --text-dark: var(--text-dark);
+  --text-gray: var(--text-body);
+  --text-light: var(--text-muted);
+  --border: var(--border);
+  --shadow-soft: var(--shadow-sm);
+  --shadow-medium: var(--shadow-md);
+  --shadow-heavy: var(--shadow-lg);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.book-table-container {
+  background: var(--cream);
+  min-height: 100vh;
+  padding: 80px 40px;
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.book-table-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ────────────────────────────────────────────────────────
+   HEADER SECTION
+   ──────────────────────────────────────────────────────── */
+
+.book-table-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.book-table-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  font-weight: 700;
+  color: var(--primary-green);
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+.book-table-subtitle {
+  font-size: 18px;
+  color: var(--text-light);
+  letter-spacing: 0.5px;
+  font-weight: 300;
+}
+
+/* ────────────────────────────────────────────────────────
+   RESTAURANT SELECTOR
+   ──────────────────────────────────────────────────────── */
+
+.restaurant-selector-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 60px;
+}
+
+.restaurant-selector {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1.5px solid var(--border);
+  border-radius: 50px;
+  padding: 12px 24px;
+  font-size: 16px;
+  color: var(--text-dark);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 250px;
+  backdrop-filter: blur(10px);
+}
+
+.restaurant-selector:hover {
+  border-color: var(--primary-green);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 16px rgba(31, 77, 59, 0.1);
+}
+
+.restaurant-selector:focus {
+  outline: none;
+  border-color: var(--primary-green);
+  box-shadow: 0 0 0 3px rgba(31, 77, 59, 0.1);
+}
+
+/* ────────────────────────────────────────────────────────
+   LOADING & EMPTY STATES
+   ──────────────────────────────────────────────────────── */
+
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  gap: 20px;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(31, 77, 59, 0.1);
+  border-top-color: var(--primary-green);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.empty-state {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  padding: 60px 40px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+
+.empty-state p {
+  font-size: 18px;
+  color: var(--text-light);
+}
+
+/* ────────────────────────────────────────────────────────
+   TABLE TYPE SECTIONS
+   ──────────────────────────────────────────────────────── */
+
+.table-type-section {
+  margin-bottom: 80px;
+}
+
+.table-type-heading {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--primary-green);
+  margin-bottom: 40px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--accent-gold);
+  display: inline-block;
+}
+
+/* ────────────────────────────────────────────────────────
+   TABLES GRID
+   ──────────────────────────────────────────────────────── */
+
+.tables-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 28px;
+  margin-bottom: 40px;
+}
+
+@media (max-width: 768px) {
+  .tables-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tables-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ────────────────────────────────────────────────────────
+   TABLE CARD DESIGN
+   ──────────────────────────────────────────────────────── */
+
+.table-card {
+  background: rgba(255, 255, 255, 0.6);
+  border: 2px solid rgba(31, 77, 59, 0.2);
+  border-radius: 20px;
+  padding: 32px 20px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+  position: relative;
+  overflow: hidden;
+}
+
+.table-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(31, 77, 59, 0.02) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.table-card:hover:not(.table-card-disabled) {
+  transform: scale(1.05);
+  border-color: var(--primary-green);
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: var(--shadow-heavy);
+}
+
+.table-card-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.table-card-disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.table-card-selected {
+  border-color: var(--primary-green);
+  border-width: 2.5px;
+  background: rgba(31, 77, 59, 0.08);
+  box-shadow: 
+    0 0 0 4px rgba(31, 77, 59, 0.1),
+    var(--shadow-heavy);
+}
+
+/* ────────────────────────────────────────────────────────
+   TABLE CARD CONTENT
+   ──────────────────────────────────────────────────────── */
+
+.table-card-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  width: 100%;
+}
+
+.table-number-display {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--primary-green);
+  margin-bottom: 8px;
+  letter-spacing: -1px;
+}
+
+.table-capacity-display {
+  font-size: 16px;
+  color: var(--text-gray);
+  font-weight: 500;
+  margin-bottom: 16px;
+  letter-spacing: 0.5px;
+}
+
+/* ────────────────────────────────────────────────────────
+   TABLE TYPE BADGE
+   ──────────────────────────────────────────────────────── */
+
+.table-type-badge {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border: 2px solid currentColor;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.type-indoor {
+  color: var(--primary-green);
+}
+
+.type-outdoor {
+  color: #0078d4;
+}
+
+.type-vip {
+  color: var(--accent-gold);
+  border-color: var(--accent-gold);
+}
+
+.table-card:hover .table-type-badge:not(.type-vip) {
+  background: rgba(31, 77, 59, 0.1);
+}
+
+.table-card-selected .table-type-badge:not(.type-vip) {
+  background: rgba(31, 77, 59, 0.15);
+}
+
+/* ────────────────────────────────────────────────────────
+   BOOKED STATUS
+   ──────────────────────────────────────────────────────── */
+
+.table-status-booked {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(200, 0, 0, 0.9);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* ────────────────────────────────────────────────────────
+   SELECTED TABLE INFO
+   ──────────────────────────────────────────────────────── */
+
+.selected-table-info {
+  background: rgba(31, 77, 59, 0.08);
+  border: 2px solid rgba(31, 77, 59, 0.2);
+  border-radius: 16px;
+  padding: 24px;
+  margin: 60px 0 40px 0;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80px;
+}
+
+.info-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.info-label {
+  font-weight: 600;
+  color: var(--text-dark);
+  font-size: 16px;
+}
+
+.info-table {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--primary-green);
+}
+
+.info-detail {
+  font-size: 16px;
+  color: var(--text-gray);
+  font-weight: 500;
+}
+
+/* ────────────────────────────────────────────────────────
+   BOOKING ACTIONS
+   ──────────────────────────────────────────────────────── */
+
+.booking-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 60px;
+  flex-wrap: wrap;
+}
+
+.btn-reserve,
+.btn-clear {
+  padding: 16px 48px;
+  border: none;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Segoe UI", -apple-system, sans-serif;
+}
+
+.btn-reserve {
+  background: var(--primary-green);
+  color: white;
+}
+
+.btn-reserve:hover:not(:disabled) {
+  background: var(--dark-green);
+  box-shadow: var(--shadow-heavy);
+  transform: translateY(-2px);
+}
+
+.btn-reserve:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-clear {
+  background: transparent;
+  color: var(--primary-green);
+  border: 2px solid var(--primary-green);
+}
+
+.btn-clear:hover {
+  background: rgba(31, 77, 59, 0.1);
+  box-shadow: var(--shadow-soft);
+}
+
+/* ────────────────────────────────────────────────────────
+   RESPONSIVE DESIGN
+   ──────────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .book-table-container {
+    padding: 60px 20px;
+  }
+
+  .book-table-header {
+    margin-bottom: 60px;
+  }
+
+  .book-table-title {
+    font-size: 2rem;
+  }
+
+  .book-table-subtitle {
+    font-size: 16px;
+  }
+
+  .restaurant-selector-wrapper {
+    margin-bottom: 40px;
+  }
+
+  .restaurant-selector {
+    min-width: 200px;
+  }
+
+  .table-type-heading {
+    font-size: 22px;
+    margin-bottom: 30px;
+  }
+
+  .tables-grid {
+    gap: 16px;
+  }
+
+  .table-card {
+    min-height: 180px;
+    padding: 24px 16px;
+  }
+
+  .table-number-display {
+    font-size: 36px;
+  }
+
+  .booking-actions {
+    gap: 12px;
+  }
+
+  .btn-reserve,
+  .btn-clear {
+    padding: 14px 32px;
+    font-size: 14px;
+    flex: 1;
+    min-width: 140px;
+  }
+}
+
+@media (max-width: 480px) {
+  .book-table-container {
+    padding: 40px 16px;
+  }
+
+  .book-table-title {
+    font-size: 1.8rem;
+  }
+
+  .book-table-subtitle {
+    font-size: 14px;
+  }
+
+  .restaurant-selector {
+    min-width: 100%;
+  }
+
+  .table-type-heading {
+    font-size: 20px;
+  }
+
+  .tables-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .table-card {
+    min-height: 160px;
+    padding: 20px 12px;
+  }
+
+  .table-number-display {
+    font-size: 32px;
+  }
+
+  .table-capacity-display {
+    font-size: 14px;
+  }
+
+  .selected-table-info {
+    padding: 16px 12px;
+    min-height: 70px;
+  }
+
+  .info-content {
+    font-size: 14px;
+  }
+
+  .info-table {
+    font-size: 18px;
+  }
+
+  .booking-actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .btn-reserve,
+  .btn-clear {
+    padding: 12px 24px;
+    width: 100%;
+  }
+}

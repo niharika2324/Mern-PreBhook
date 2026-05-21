@@ -1,0 +1,563 @@
+/* ═══════════════════════════════════════════════
+   PREMIUM TABLE BOOKING - RESTAURANT WEBSITE
+   Forest Green Theme with Creme Accents
+   ═══════════════════════════════════════════════ */
+
+:root {
+  --green-primary: #0B3D2E;
+  --green-dark: #082a1f;
+  --green-light: #1a5c47;
+  --creme: #f5e6d3;
+  --creme-light: #faf8f3;
+  --text-dark: #333333;
+  --text-light: #666666;
+  --border: #e0d5c7;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 20px 60px rgba(11, 61, 46, 0.15);
+  --ease: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   BOOK TABLE CONTAINER
+   ═══════════════════════════════════════════════ */
+.book-table-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 40px;
+  background: transparent;
+}
+
+/* ─── HEADER SECTION ─── */
+.book-table-header {
+  text-align: center;
+  margin-bottom: 50px;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.book-table-header h1 {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  color: var(--text-dark);
+  margin-bottom: 12px;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+.book-table-header p {
+  color: var(--text-light);
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+/* ─── RESTAURANT SELECTOR ─── */
+.restaurant-selector {
+  margin-bottom: 50px;
+  animation: slideDown 0.6s ease-out;
+}
+
+.restaurant-selector select {
+  width: 100%;
+  padding: 16px 20px;
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  font-size: 1rem;
+  background: #ffffff;
+  color: var(--text-dark);
+  cursor: pointer;
+  font-weight: 500;
+  transition: var(--ease);
+  box-shadow: var(--shadow-sm);
+}
+
+.restaurant-selector select:hover {
+  border-color: var(--green-primary);
+  box-shadow: var(--shadow-md);
+}
+
+.restaurant-selector select:focus {
+  outline: none;
+  border-color: var(--green-primary);
+  box-shadow: 0 0 0 4px rgba(11, 61, 46, 0.1);
+}
+
+/* ─── LOADING STATE ─── */
+.loading-spinner {
+  text-align: center;
+  padding: 80px 40px;
+  color: var(--text-light);
+  font-size: 1.1rem;
+}
+
+.loading-spinner::before {
+  content: '';
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--creme);
+  border-top-color: var(--green-primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-bottom: 16px;
+  margin-right: 12px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ─── TABLES FLOOR PLAN ─── */
+.tables-floor-plan {
+  background: linear-gradient(135deg, #ffffff 0%, #faf8f3 100%);
+  border: 2px solid var(--border);
+  border-radius: 24px;
+  padding: 50px;
+  min-height: 500px;
+  position: relative;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 40px;
+  animation: fadeInUp 0.6s ease-out 0.2s both;
+}
+
+/* Floor aisle decorations */
+.floor-aisle {
+  position: absolute;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(11, 61, 46, 0.08) 0,
+    rgba(11, 61, 46, 0.08) 10px,
+    rgba(255, 255, 255, 0.3) 10px,
+    rgba(255, 255, 255, 0.3) 20px
+  );
+  border-radius: 999px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+.floor-aisle-horizontal {
+  left: 10%;
+  right: 10%;
+  top: 50%;
+  height: 6px;
+  transform: translateY(-50%);
+}
+
+.floor-aisle-vertical {
+  top: 10%;
+  bottom: 10%;
+  left: 50%;
+  width: 6px;
+  transform: translateX(-50%);
+}
+
+/* Zone labels */
+.floor-zone-label {
+  position: absolute;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(11, 61, 46, 0.5);
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 4px 10px;
+  backdrop-filter: blur(5px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.floor-zone-window {
+  top: 20px;
+  left: 20px;
+}
+
+.floor-zone-center {
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.floor-zone-vip {
+  top: 20px;
+  right: 20px;
+}
+
+/* ─── TABLE CARDS ─── */
+.table-card {
+  position: absolute;
+  cursor: pointer;
+  transition: var(--ease);
+  animation: scaleIn 0.6s ease-out both;
+  width: 140px;
+  height: 140px;
+  background: #ffffff;
+  border: 2px solid var(--border);
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  transform: translate(-50%, -50%);
+}
+
+.table-card:hover:not(.table-card-booked) {
+  transform: translate(-50%, -50%) translateY(-6px);
+  border-color: var(--green-light);
+  box-shadow: var(--shadow-lg);
+}
+
+.table-card-booked {
+  background: #f5f5f5;
+  border-color: #ccc;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.table-card-booked .table-status-indicator {
+  background: #d32f2f !important;
+}
+
+.table-card-selected {
+  background: linear-gradient(135deg, var(--green-primary) 0%, var(--green-light) 100%);
+  color: #ffffff;
+  border-color: var(--green-primary);
+  box-shadow: 0 12px 32px rgba(11, 61, 46, 0.25);
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.table-floor {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Table status indicator */
+.table-status-indicator {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  top: 8px;
+  right: 8px;
+  z-index: 10;
+}
+
+.table-status-available {
+  background: #22a34a;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.table-status-booked {
+  background: #d32f2f;
+}
+
+/* Table visual center */
+.table-core {
+  background: var(--green-primary);
+  color: #ffffff;
+  border-radius: 12px;
+  padding: 10px;
+  min-width: 60px;
+  z-index: 5;
+}
+
+.table-card-selected .table-core {
+  background: #ffffff;
+  color: var(--green-primary);
+}
+
+.shape-circle {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+}
+
+.shape-square {
+  border-radius: 12px;
+  width: 60px;
+  height: 60px;
+}
+
+.shape-rectangle {
+  border-radius: 12px;
+  width: 80px;
+  height: 50px;
+}
+
+/* Chairs around table */
+.table-chairs-ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+}
+
+.table-chair-dot {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: var(--green-primary);
+  border-radius: 50%;
+  opacity: 0.6;
+}
+
+.table-card-selected .table-chair-dot {
+  background: #ffffff;
+}
+
+.table-number {
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.table-capacity {
+  font-size: 0.75rem;
+  font-weight: 600;
+  opacity: 0.85;
+}
+
+/* Location info */
+.table-info {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 8;
+}
+
+.table-location {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 8px;
+  background: rgba(11, 61, 46, 0.1);
+  color: var(--text-dark);
+}
+
+.table-card-selected .table-location {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+/* ─── EMPTY STATE ─── */
+.empty-state {
+  background: #ffffff;
+  border: 2px dashed var(--border);
+  border-radius: 16px;
+  padding: 80px 40px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.empty-state p {
+  color: var(--text-light);
+  font-size: 1.1rem;
+}
+
+/* ─── SELECTED TABLE INFO ─── */
+.selected-info {
+  background: linear-gradient(135deg, var(--creme-light) 0%, #fef9f4 100%);
+  border: 2px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 32px;
+  text-align: center;
+  animation: slideDown 0.6s ease-out;
+}
+
+.selected-info p {
+  color: var(--text-dark);
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+.selected-info strong {
+  color: var(--green-primary);
+  font-weight: 700;
+}
+
+/* ─── BOOKING SECTION ─── */
+.booking-section {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: fadeInUp 0.6s ease-out 0.3s both;
+}
+
+.btn-confirm,
+.btn-cancel {
+  padding: 14px 32px;
+  border: none;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--ease);
+  letter-spacing: 0.05em;
+  min-width: 160px;
+}
+
+.btn-confirm {
+  background: var(--green-primary);
+  color: #ffffff;
+}
+
+.btn-confirm:hover:not(:disabled) {
+  background: var(--green-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(11, 61, 46, 0.25);
+}
+
+.btn-confirm:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-cancel {
+  background: transparent;
+  color: var(--green-primary);
+  border: 2px solid var(--green-primary);
+}
+
+.btn-cancel:hover {
+  background: var(--green-primary);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  .book-table-container {
+    padding: 40px 20px;
+  }
+
+  .book-table-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .tables-floor-plan {
+    padding: 30px;
+    min-height: 400px;
+  }
+
+  .table-card {
+    width: 120px;
+    height: 120px;
+    font-size: 0.9rem;
+  }
+
+  .booking-section {
+    gap: 12px;
+  }
+
+  .btn-confirm,
+  .btn-cancel {
+    padding: 12px 24px;
+    font-size: 0.9rem;
+    min-width: 140px;
+  }
+}
+
+@media (max-width: 480px) {
+  .book-table-container {
+    padding: 30px 16px;
+  }
+
+  .book-table-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .book-table-header p {
+    font-size: 0.95rem;
+  }
+
+  .tables-floor-plan {
+    padding: 20px;
+    min-height: 350px;
+  }
+
+  .table-card {
+    width: 100px;
+    height: 100px;
+    font-size: 0.8rem;
+  }
+
+  .floor-zone-label {
+    font-size: 0.6rem;
+    padding: 3px 8px;
+  }
+
+  .booking-section {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .btn-confirm,
+  .btn-cancel {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 0.9rem;
+    min-width: unset;
+  }
+
+  .selected-info {
+    margin-bottom: 24px;
+  }
+}

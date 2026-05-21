@@ -1,0 +1,132 @@
+/* ==========================================
+   LUXE DINING — FOOTER
+   Background: cream (matches page background)
+   Text: dark charcoal to match the light bg
+   ========================================== */
+.footer {
+  background: var(--cream);
+  color: var(--text-body);
+  padding: 70px 5% 0;
+  font-family: var(--font-body);
+  border-top: 1px solid var(--border);
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 50px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-bottom: 60px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Brand column */
+.footer-brand h2 {
+  font-family: var(--font-heading);
+  color: var(--text-dark);
+  font-size: 1.8rem;
+  margin-bottom: 16px;
+}
+
+.footer-brand p {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  line-height: 1.75;
+}
+
+/* Links columns */
+.footer-links h4,
+.footer-contact h4 {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-links a {
+  color: var(--text-body);
+  font-size: 0.92rem;
+  padding: 6px 0;
+  transition: color var(--ease);
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  color: var(--green);
+}
+
+/* Contact column */
+.footer-contact {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-contact p {
+  color: var(--text-body);
+  font-size: 0.92rem;
+  margin-bottom: 6px;
+}
+
+.socials {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.socials span {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all var(--ease);
+  color: var(--text-body);
+}
+
+.socials span:hover {
+  background: var(--green-pale);
+  border-color: var(--green);
+  transform: translateY(-2px);
+}
+
+/* Bottom bar */
+.footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 22px 0;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  letter-spacing: 0.01em;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .footer-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+  .footer {
+    padding: 50px 5% 0;
+  }
+}

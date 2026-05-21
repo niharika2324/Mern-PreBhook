@@ -1,0 +1,241 @@
+/* =====================================================
+   PREMIUM SAAS AUTH UI
+   Design: Centered minimal card
+   Modern, extremely clean, Apple/Airbnb premium aesthetic
+   ===================================================== */
+
+/* ── ROOT CONTAINER ── */
+.auth-container {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: var(--cream);
+  padding: 20px;
+}
+
+/* ── PARTICLE BACKGROUND ── */
+#tsparticles {
+  display: none !important;
+}
+
+/* ── WRAPPER (Main Card Container) ── */
+.auth-wrapper {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 440px;
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(31, 61, 43, 0.08);
+  background: #ffffff;
+  animation: cardFadeIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ── FORM SECTION ── */
+.auth-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 50px 40px;
+  background: #ffffff;
+  border-radius: 24px;
+  position: relative;
+}
+
+.auth-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--green), transparent);
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+}
+
+/* ── HEADING ── */
+.auth-card h2 {
+  font-family: var(--font-heading);
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+  text-align: center;
+  letter-spacing: -1.2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.auth-card h2 span {
+  display: inline-block;
+  animation: wave 1.5s ease-in-out infinite;
+  font-size: 1.8rem;
+}
+
+@keyframes wave {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(15deg); }
+  50% { transform: rotate(-10deg); }
+  75% { transform: rotate(15deg); }
+}
+
+/* ── SUBHEADING ── */
+.auth-card .auth-subtitle {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-bottom: 40px;
+  font-weight: 400;
+}
+
+/* ── FORM ── */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ── INPUT GROUP ── */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-group label {
+  font-size: 0.75rem;
+  color: var(--text-body);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-left: 4px;
+}
+
+.input-group input,
+.input-group select {
+  padding: 14px 18px;
+  border: 1px solid var(--cream-dark);
+  border-radius: 12px;
+  font-size: 1rem;
+  font-family: inherit;
+  background: var(--cream);
+  color: var(--text-dark);
+  transition: all 0.3s ease;
+  font-weight: 400;
+}
+
+.input-group input::placeholder,
+.input-group select::placeholder {
+  color: #adb5bd;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+  outline: none;
+  background: #ffffff;
+  border-color: var(--green);
+  box-shadow: 0 0 0 4px var(--green-pale);
+  transform: translateY(-1px);
+}
+
+/* ── SUBMIT BUTTON ── */
+.auth-button {
+  padding: 16px 32px;
+  background: var(--green);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-pill);
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  margin-top: 10px;
+  box-shadow: 0 4px 12px rgba(31, 61, 43, 0.15);
+}
+
+.auth-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(31, 61, 43, 0.25);
+  background: var(--green-mid);
+}
+
+.auth-button:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 8px rgba(31, 61, 43, 0.15);
+}
+
+/* ── TOGGLE TEXT (Login/Signup Link) ── */
+.auth-toggle-text {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.auth-toggle-text a {
+  color: var(--green);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  padding-left: 4px;
+}
+
+.auth-toggle-text a:hover {
+  color: var(--accent-gold);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* ── RESPONSIVE DESIGN ── */
+@media (max-width: 480px) {
+  .auth-container {
+    padding: 16px;
+  }
+
+  .auth-wrapper {
+    max-width: 100%;
+    border-radius: 20px;
+  }
+
+  .auth-card {
+    padding: 40px 24px;
+    border-radius: 20px;
+  }
+
+  .auth-card h2 {
+    font-size: 2rem;
+  }
+
+  .auth-card .auth-subtitle {
+    margin-bottom: 30px;
+  }
+
+  .input-group input,
+  .input-group select {
+    padding: 12px 16px;
+  }
+
+  .auth-button {
+    padding: 14px 24px;
+  }
+}
