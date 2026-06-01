@@ -1,70 +1,184 @@
-# Getting Started with Create React App
+# PreBhook – AI-Assisted Restaurant Reservation Platform
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+PreBhook is a full-stack restaurant reservation and food pre-ordering platform designed to reduce customer waiting time and streamline restaurant operations. The platform enables users to discover restaurants, browse menus, pre-order meals, reserve tables, and manage bookings through an intuitive and responsive interface.
 
-In the project directory, you can run:
+The system also includes dedicated dashboards for restaurant owners and administrators, providing tools for restaurant management, booking tracking, menu management, and operational oversight.
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Customer Features
 
-### `npm test`
+* User Registration & Authentication
+* Email OTP Verification
+* Restaurant Discovery
+* Interactive Menu Browsing
+* Food Pre-Ordering
+* Table Reservation System
+* Booking History Management
+* AI-Powered Assistant
+* Online Payment Integration
+* Responsive User Experience
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Restaurant Owner Features
 
-### `npm run build`
+* Restaurant Management
+* Menu Management
+* Booking Management
+* Order Tracking
+* Dashboard Analytics
+* Customer Reservation Monitoring
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Admin Features
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+* User Management
+* Restaurant Approval & Monitoring
+* Platform Oversight
+* Booking Analytics
+* System Administration Dashboard
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## Technology Stack
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Frontend
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* React.js
+* React Router
+* Axios
+* Framer Motion
+* Tailwind CSS / CSS3
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Backend
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+* Node.js
+* Express.js
+* JWT Authentication
+* REST APIs
 
-## Learn More
+### Database
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+* MongoDB
+* Mongoose ODM
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Third-Party Services
 
-### Code Splitting
+* Razorpay (Payment Gateway)
+* Twilio (SMS Notifications)
+* Nodemailer (Email OTP Verification)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+## System Architecture
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+User Interface (React.js)
 
-### Making a Progressive Web App
+↓
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+REST APIs (Express.js)
 
-### Advanced Configuration
+↓
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Business Logic Layer
 
-### Deployment
+↓
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+MongoDB Database
 
-### `npm run build` fails to minify
+↓
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+External Services (Razorpay, Twilio, Email Services)
+
+---
+
+## Key Highlights
+
+* Full-stack MERN architecture
+* Secure JWT authentication
+* Role-based access control
+* Payment gateway integration
+* AI-assisted user experience
+* Responsive and modern UI
+* Scalable REST API architecture
+* Modular component-based frontend design
+
+---
+
+## Installation
+
+### Clone Repository
+
+```bash
+git clone <repository-url>
+cd Prebhook
+```
+
+### Install Frontend Dependencies
+
+```bash
+cd restroapp
+npm install
+```
+
+### Install Backend Dependencies
+
+```bash
+cd ../mern_server
+npm install
+```
+
+### Environment Variables
+
+Create a `.env` file inside the backend directory:
+
+```env
+MONGO_URI=
+JWT_SECRET=
+EMAIL_USER=
+EMAIL_PASS=
+RAZORPAY_KEY_ID=
+RAZORPAY_SECRET=
+TWILIO_ACCOUNT_SID=
+TWILIO_AUTH_TOKEN=
+TWILIO_PHONE_NUMBER=
+```
+
+### Run Backend
+
+```bash
+npm run dev
+```
+
+### Run Frontend
+
+```bash
+npm start
+```
+
+---
+
+## Future Enhancements
+
+* AI-based Food Recommendation System
+* Smart Reservation Prediction
+* Real-Time Booking Notifications
+* Restaurant Review Sentiment Analysis
+* Advanced Analytics Dashboard
+* Mobile Application Support
+
+---
+
+## Project Status
+
+Actively Developed 🚀
+
+---
+
+## Author
+
+Niharika Arora
+
+BCA Student | Full Stack Developer | MERN Stack Enthusiast
