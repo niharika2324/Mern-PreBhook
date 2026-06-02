@@ -337,6 +337,8 @@ const AIConcierge = () => {
   const recognitionRef = useRef(null);
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
+  const sendRef = useRef(null);
+  const pushAIRef = useRef(null);
 
   const page = getPageContext(location.pathname);
   const isAuthPage = location.pathname === "/" || location.pathname === "/register";
@@ -367,7 +369,7 @@ const AIConcierge = () => {
     recognition.continuous = false;
     recognition.onresult = (event) => {
       const transcript = event.results?.[0]?.[0]?.transcript || "";
-      if (transcript) send(transcript);
+      if (transcript) sendRef.current?.(transcript);
     };
     recognition.onend = () => setListening(false);
     recognition.onerror = () => {
@@ -380,7 +382,7 @@ const AIConcierge = () => {
   useEffect(() => {
     if (open && messages.length === 0) {
       const name = currentUser?.name?.split(" ")[0];
-      pushAI({
+      pushAIRef.current?.({
         text: `Hello${name ? `, ${name}` : ""}. I am your AI Dining Concierge.\n\nI can recommend restaurants, prepare a paid table booking, answer owner/admin questions, and use voice in supported browsers.`,
         actions: [
           { label: "Book with AI", intent: "booking" },
@@ -576,6 +578,9 @@ const AIConcierge = () => {
     }
     pushAI(response);
   };
+
+  sendRef.current = send;
+  pushAIRef.current = pushAI;
 
   const handleAction = (action) => {
     if (action.intent === "booking") {
